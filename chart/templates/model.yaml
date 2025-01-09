@@ -1,0 +1,10 @@
+kind: Model
+apiVersion: mlflow.krateo.io/v1alpha1
+metadata:
+  name: {{ include "mlflow-app.fullname" . }}-model
+  annotations:
+    krateo.io/connector-verbose: "true"
+spec:
+  name: {{ .Values.mlflow.model.name }}
+  authenticationRefs:
+    bearerAuthRef: {{ include "mlflow-app.fullname" . }}-mlflow-auth-ref

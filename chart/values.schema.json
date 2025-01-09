@@ -1,0 +1,70 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Values",
+    "type": "object",
+    "properties": {
+      "nameOverride": {
+        "type": "string",
+        "default": ""
+      },
+      "fullnameOverride": {
+        "type": "string",
+        "default": ""
+      },
+      "mlflow": {
+        "type": "object",
+        "properties": {
+          "run": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "default": "98c4e9e8-562f-4bbb-b255-c6dfd589fc9d"
+              }
+            },
+            "required": ["id"]
+          },
+          "model": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "default": "krateo-mlflow-model-new"
+              },
+              "description": {
+                "type": "string",
+                "default": "Model registered from MLflow"
+              }
+            },
+            "required": ["name", "description"]
+          },
+          "credentials": {
+            "type": "object",
+            "properties": {
+              "secretRef": {
+                "type": "object",
+                "properties": {
+                  "namespace": {
+                    "type": "string",
+                    "default": "mlflow-system"
+                  },
+                  "name": {
+                    "type": "string",
+                    "default": "azure-token"
+                  },
+                  "key": {
+                    "type": "string",
+                    "default": "access_token"
+                  }
+                },
+                "required": ["namespace", "name", "key"]
+              }
+            },
+            "required": ["secretRef"]
+          }
+        },
+        "required": ["run", "model", "credentials"]
+      }
+    },
+    "required": ["mlflow"]
+  }
