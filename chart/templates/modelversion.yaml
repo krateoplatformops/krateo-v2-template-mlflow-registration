@@ -1,7 +1,12 @@
-{{- $model := lookup "mlflow.krateo.io/v1alpha1" "Model" .Release.Namespace ( print (include "mlflow-app.fullname" .) "-model" ) -}}
+{{- $model := lookup "mlflow.krateo.io/v1alpha1" "Model" .Release.Namespace ( print (include "mlflow-app.fullname" .) "-model" ) }}
 {{- if and $model $model.status $model.status.conditions }}
+{{- $isReady := false }}
 {{- range $condition := $model.status.conditions }}
 {{- if and (eq $condition.type "Ready") (eq $condition.status "True") }}
+{{- $isReady = true }}
+{{- end }}
+{{- end }}
+{{- if $isReady }}
 
 apiVersion: mlflow.krateo.io/v1alpha1
 kind: ModelVersions
@@ -17,6 +22,5 @@ spec:
   authenticationRefs:
     bearerAuthRef: {{ include "mlflow-app.fullname" . }}-mlflow-auth-ref
 
-{{- end }}
 {{- end }}
 {{- end }}
