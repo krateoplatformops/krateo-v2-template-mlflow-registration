@@ -9,7 +9,7 @@
 {{- if $isReady }}
 
 apiVersion: mlflow.krateo.io/v1alpha1
-kind: ModelVersions
+kind: ModelVersion
 metadata:
   name: {{ include "mlflow-app.fullname" . }}-modelversion
   annotations:
