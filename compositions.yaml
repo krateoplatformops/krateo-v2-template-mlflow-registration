@@ -1,0 +1,18 @@
+apiVersion: composition.krateo.io/v0-0-1
+kind: MlflowRegistration
+metadata:
+  name: mlflow-test-registration
+  namespace: mlflow-system
+spec:
+  mlflow:
+    run:
+      id: 98c4e9e8-562f-4bbb-b255-c6dfd589fc9d
+    model:
+      name: krateo-mlflow-registration-auto
+      description: "Model registered from MLflow"
+    credentials:
+      secretRef:
+        namespace: mlflow-system
+        name: azure-token
+        key: access_token
+  
